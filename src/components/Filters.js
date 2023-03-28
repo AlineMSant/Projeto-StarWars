@@ -5,7 +5,6 @@ function Filters() {
   const {
     changeSearch,
     setChangeSearch,
-    keysToSelectColumn,
     setValueOperator,
   } = useContext(AppContext);
 
