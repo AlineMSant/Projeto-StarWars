@@ -2,8 +2,7 @@ import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
 
 function Table() {
-  const { fetchPlanets,
-    filteredByName } = useContext(AppContext);
+  const { fetchPlanets, filteredByName } = useContext(AppContext);
 
   return (
     <table>
