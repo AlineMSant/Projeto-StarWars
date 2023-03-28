@@ -7,7 +7,9 @@ export default function AppProvider({ children }) {
   const [filteredByName, setfilteredByName] = useState([]);
   const [changeSearch, setChangeSearch] = useState('');
   const [keysToSelectColumn, setKeysToSelectColumn] = useState([]);
+  const [valueOperator, setValueOperator] = useState('maior que');
 
+  // para o fetch inicial
   useEffect(() => {
     const requestApi = async () => {
       const request = await fetch('https://swapi.dev/api/planets');
@@ -24,6 +26,7 @@ export default function AppProvider({ children }) {
     requestApi();
   }, []);
 
+  // para filtragem por digitação do input
   useEffect(() => {
     const newArray = fetchPlanets.filter((obj) => obj.name.toLowerCase()
       .includes(changeSearch.toLowerCase()));
@@ -31,6 +34,7 @@ export default function AppProvider({ children }) {
     setfilteredByName(newArray);
   }, [changeSearch, fetchPlanets]);
 
+  // para gerar as options de colunas
   useEffect(() => {
     if (fetchPlanets.length > 0) {
       const keys = Object.keys(fetchPlanets[0]);
@@ -48,6 +52,8 @@ export default function AppProvider({ children }) {
     setChangeSearch,
     filteredByName,
     keysToSelectColumn,
+    setValueOperator,
+    valueOperator,
   };
 
   return (
