@@ -6,7 +6,9 @@ export default function AppProvider({ children }) {
   const [fetchPlanets, setFetchPlanets] = useState([]);
   const [filteredByName, setfilteredByName] = useState([]);
   const [changeSearch, setChangeSearch] = useState('');
-  const [valueOperator, setValueOperator] = useState('');
+  const [valueColumn, setValueColumn] = useState('population');
+  const [valueOperator, setValueOperator] = useState('maior que');
+  const [valueNumber, setValueNumber] = useState('0');
 
   // para o fetch inicial
   useEffect(() => {
@@ -40,7 +42,9 @@ export default function AppProvider({ children }) {
     setChangeSearch,
     filteredByName,
     setValueOperator,
-    valueOperator,
+    setValueColumn,
+    setValueNumber,
+    valueNumber,
   };
 
   return (

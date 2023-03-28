@@ -6,6 +6,9 @@ function Filters() {
     changeSearch,
     setChangeSearch,
     setValueOperator,
+    setValueColumn,
+    setValueNumber,
+    valueNumber,
   } = useContext(AppContext);
 
   function handleChangeSearch(e) {
@@ -14,6 +17,14 @@ function Filters() {
 
   function handleChangeOperator(e) {
     setValueOperator(e.target.value);
+  }
+
+  function handleChangeColumn(e) {
+    setValueColumn(e.target.value);
+  }
+
+  function handleChangeNumber(e) {
+    setValueNumber(e.target.value);
   }
 
   return (
@@ -28,7 +39,10 @@ function Filters() {
 
       />
 
-      <select data-testid="column-filter">
+      <select
+        data-testid="column-filter"
+        onChange={ handleChangeColumn }
+      >
         <option value="population">population</option>
         <option value="orbital_period">orbital_period</option>
         <option value="diameter">diameter</option>
@@ -48,7 +62,8 @@ function Filters() {
       <input
         type="number"
         data-testid="value-filter"
-        value={ 0 }
+        value={ valueNumber }
+        onChange={ handleChangeNumber }
       />
 
       <button
