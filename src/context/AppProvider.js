@@ -4,6 +4,8 @@ import AppContext from './AppContext';
 
 export default function AppProvider({ children }) {
   const [fetchPlanets, setFetchPlanets] = useState([]);
+  const [filteredByName, setfilteredByName] = useState([]);
+  const [changeSearch, setChangeSearch] = useState('');
 
   useEffect(() => {
     const requestApi = async () => {
@@ -21,8 +23,17 @@ export default function AppProvider({ children }) {
     requestApi();
   }, []);
 
+  const values = {
+    fetchPlanets,
+    setFetchPlanets,
+    changeSearch,
+    setChangeSearch,
+    filteredByName,
+    setfilteredByName,
+  };
+
   return (
-    <AppContext.Provider value={ { fetchPlanets, setFetchPlanets } }>
+    <AppContext.Provider value={ values }>
       { children }
     </AppContext.Provider>
   );

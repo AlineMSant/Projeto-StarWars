@@ -1,8 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AppContext from '../context/AppContext';
 
 function Table() {
-  const { fetchPlanets } = useContext(AppContext);
+  const { fetchPlanets,
+    filteredByName,
+    setfilteredByName,
+    changeSearch } = useContext(AppContext);
+
+  useEffect(() => {
+    const newArray = fetchPlanets.filter((obj) => obj.name.toLowerCase()
+      .includes(changeSearch));
+
+    setfilteredByName(newArray);
+  }, [changeSearch]);
 
   return (
     <table>
@@ -24,7 +34,23 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        { fetchPlanets.map((obj) => (
+        { filteredByName.length > 0 ? filteredByName.map((obj) => (
+          <tr key={ obj.name }>
+            <td>{ obj.name }</td>
+            <td>{ obj.rotation_period }</td>
+            <td>{ obj.orbital_period }</td>
+            <td>{ obj.diameter }</td>
+            <td>{ obj.climate }</td>
+            <td>{ obj.gravity }</td>
+            <td>{ obj.terrain }</td>
+            <td>{ obj.surface_water }</td>
+            <td>{ obj.population }</td>
+            <td>{ obj.films }</td>
+            <td>{ obj.created }</td>
+            <td>{ obj.edited }</td>
+            <td>{ obj.url }</td>
+          </tr>
+        )) : fetchPlanets.map((obj) => (
           <tr key={ obj.name }>
             <td>{ obj.name }</td>
             <td>{ obj.rotation_period }</td>
