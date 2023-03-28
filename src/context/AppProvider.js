@@ -23,13 +23,19 @@ export default function AppProvider({ children }) {
     requestApi();
   }, []);
 
+  useEffect(() => {
+    const newArray = fetchPlanets.filter((obj) => obj.name.toLowerCase()
+      .includes(changeSearch.toLowerCase()));
+
+    setfilteredByName(newArray);
+  }, [changeSearch, fetchPlanets]);
+
   const values = {
     fetchPlanets,
     setFetchPlanets,
     changeSearch,
     setChangeSearch,
     filteredByName,
-    setfilteredByName,
   };
 
   return (

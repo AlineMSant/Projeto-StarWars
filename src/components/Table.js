@@ -1,18 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
 
 function Table() {
   const { fetchPlanets,
-    filteredByName,
-    setfilteredByName,
-    changeSearch } = useContext(AppContext);
-
-  useEffect(() => {
-    const newArray = fetchPlanets.filter((obj) => obj.name.toLowerCase()
-      .includes(changeSearch));
-
-    setfilteredByName(newArray);
-  }, [changeSearch]);
+    filteredByName } = useContext(AppContext);
 
   return (
     <table>
