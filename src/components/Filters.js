@@ -36,13 +36,19 @@ function Filters() {
     setButtonClick(false);
   }
 
-  function handleClickDelete(e) {
+  function handleClickDeleteOne(e) {
     setArrayFiltersNumbers(arrayFiltersNumbers
       .filter((obj) => obj.column !== e.target.value));
 
     const newOptions = arrayOptionsFiltered.filter((option) => option !== e.target.value);
 
     setArrayOptionsFiltered(newOptions);
+  }
+
+  function handleClickDeleteAll() {
+    setArrayFiltersNumbers([]);
+    setArrayOptionsFiltered([]);
+    setValueColumn('population');
   }
 
   return (
@@ -98,14 +104,22 @@ function Filters() {
         FILTRAR
       </button>
 
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ handleClickDeleteAll }
+      >
+        Remover todas filtragens
+      </button>
+
       {arrayFiltersNumbers.length > 0 && arrayFiltersNumbers
         .map((filter) => (
-          <li key={ filter.column }>
+          <li data-testid="filter" key={ filter.column }>
             {`${filter.column} ${filter.operator} ${filter.number}`}
             <button
               type="button"
               value={ filter.column }
-              onClick={ handleClickDelete }
+              onClick={ handleClickDeleteOne }
             >
               X
 
