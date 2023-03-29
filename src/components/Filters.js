@@ -4,15 +4,18 @@ import AppContext from '../context/AppContext';
 function Filters() {
   const { changeSearch, setChangeSearch, setValueColumn, setValueOperator,
     valueNumber, setValueNumber, setButtonClick, buttonClick,
-    arrayFiltersNumbers } = useContext(AppContext);
+    arrayFiltersNumbers, setArrayFiltersNumbers,
+    valueColumn, valueOperator, setStatusFiltered } = useContext(AppContext);
 
-  // function handleClick() {
-  //   setArrayFiltersNumbers(...arrayFiltersNumbers, {
-  //     column: valueColumn,
-  //     operator: valueOperator,
-  //     number: valueNumber,
-  //   });
-  // }
+  function handleClick() {
+    setButtonClick(!buttonClick);
+    setStatusFiltered(true);
+
+    setArrayFiltersNumbers((prevList) => [...prevList,
+      `${valueColumn} ${valueOperator} ${valueNumber}`]);
+
+    setButtonClick(false);
+  }
 
   return (
     <div>
@@ -55,16 +58,14 @@ function Filters() {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ () => setButtonClick(!buttonClick) }
+        onClick={ handleClick }
       >
         FILTRAR
       </button>
 
       {arrayFiltersNumbers.length > 0 && arrayFiltersNumbers
         .map((filter) => (
-          <li key={ filter.column }>
-            {`${filter.column} ${filter.operator} ${filter.number}`}
-          </li>))}
+          <li key={ filter }>{filter}</li>))}
     </div>
   );
 }

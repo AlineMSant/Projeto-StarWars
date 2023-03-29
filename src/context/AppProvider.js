@@ -10,6 +10,7 @@ export default function AppProvider({ children }) {
   const [valueOperator, setValueOperator] = useState('maior que');
   const [valueNumber, setValueNumber] = useState('0');
   const [buttonClick, setButtonClick] = useState(false);
+  const [statusFiltered, setStatusFiltered] = useState(false);
   const [arrayFiltersNumbers, setArrayFiltersNumbers] = useState([]);
 
   // para o fetch inicial
@@ -38,7 +39,7 @@ export default function AppProvider({ children }) {
 
       let changeTableByColumn = true;
 
-      if (buttonClick) {
+      if (statusFiltered) {
         if (valueOperator === 'maior que') {
           changeTableByColumn = parseFloat(obj[valueColumn]) > parseFloat(valueNumber);
         } else if (valueOperator === 'menor que') {
@@ -53,7 +54,7 @@ export default function AppProvider({ children }) {
 
     setfiltered(newArrayFiltered);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [changeSearch, buttonClick]);
+  }, [changeSearch, statusFiltered]);
 
   const values = {
     filtered,
@@ -69,6 +70,7 @@ export default function AppProvider({ children }) {
     setValueNumber,
     setButtonClick,
     setArrayFiltersNumbers,
+    setStatusFiltered,
   };
 
   return (
