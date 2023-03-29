@@ -9,6 +9,8 @@ function Filters() {
     setValueColumn,
     setValueNumber,
     valueNumber,
+    setButtonClick,
+    buttonClick,
   } = useContext(AppContext);
 
   function handleChangeSearch(e) {
@@ -25,6 +27,10 @@ function Filters() {
 
   function handleChangeNumber(e) {
     setValueNumber(e.target.value);
+  }
+
+  function handleClick() {
+    setButtonClick(!buttonClick);
   }
 
   return (
@@ -69,6 +75,7 @@ function Filters() {
       <button
         type="button"
         data-testid="button-filter"
+        onClick={ handleClick }
       >
         FILTRAR
       </button>

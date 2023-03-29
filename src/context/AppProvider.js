@@ -4,11 +4,12 @@ import AppContext from './AppContext';
 
 export default function AppProvider({ children }) {
   const [fetchPlanets, setFetchPlanets] = useState([]);
-  const [filteredByName, setfilteredByName] = useState([]);
+  const [filtered, setfiltered] = useState([]);
   const [changeSearch, setChangeSearch] = useState('');
   const [valueColumn, setValueColumn] = useState('population');
   const [valueOperator, setValueOperator] = useState('maior que');
   const [valueNumber, setValueNumber] = useState('0');
+  const [buttonClick, setButtonClick] = useState(false);
 
   // para o fetch inicial
   useEffect(() => {
@@ -27,24 +28,42 @@ export default function AppProvider({ children }) {
     requestApi();
   }, []);
 
-  // para filtragem por digitação do input
+  // para filtragem por digitação do input e por coluna
   useEffect(() => {
-    const newArray = fetchPlanets.filter((obj) => obj.name.toLowerCase()
-      .includes(changeSearch.toLowerCase()));
+    const newArray = fetchPlanets.filter((obj) => {
+      const byName = obj.name.toLowerCase()
+        .includes(changeSearch.toLowerCase());
+      let byColumn = true;
+      if (buttonClick) {
+        if (valueOperator === 'maior que') {
+          byColumn = parseFloat(obj[valueColumn]) > parseFloat(valueNumber);
+        } else if (valueOperator === 'menor que') {
+          byColumn = parseFloat(obj[valueColumn]) < parseFloat(valueNumber);
+        } else if (valueOperator === 'igual a') {
+          byColumn = obj[valueColumn] === valueNumber;
+        }
+      }
+      return byName && byColumn;
+    });
 
-    setfilteredByName(newArray);
-  }, [changeSearch, fetchPlanets]);
+    setfiltered(newArray);
+  }, [changeSearch, buttonClick]);
+
+  // useEffect(() => {
+  // }, [buttonClick]);
 
   const values = {
     fetchPlanets,
     setFetchPlanets,
     changeSearch,
     setChangeSearch,
-    filteredByName,
+    filtered,
     setValueOperator,
     setValueColumn,
     setValueNumber,
     valueNumber,
+    setButtonClick,
+    buttonClick,
   };
 
   return (

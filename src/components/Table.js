@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
 
 function Table() {
-  const { fetchPlanets, filteredByName } = useContext(AppContext);
+  const { fetchPlanets, filtered } = useContext(AppContext);
 
   return (
     <table>
@@ -24,7 +24,7 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        { filteredByName.length > 0 ? filteredByName.map((obj) => (
+        { filtered.length > 0 ? filtered.map((obj) => (
           <tr key={ obj.name }>
             <td>{ obj.name }</td>
             <td>{ obj.rotation_period }</td>
