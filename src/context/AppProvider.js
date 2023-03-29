@@ -73,10 +73,9 @@ export default function AppProvider({ children }) {
       const newArrayOptions = optionsColumn
         .filter((opt) => (!arrayOptionsFiltered.includes(opt) && opt));
       setValueColumn(newArrayOptions[0]);
-      console.log(newArrayOptions);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [arrayOptionsFiltered]);
+  }, [arrayOptionsFiltered, arrayFiltersNumbers]);
 
   const values = {
     fetchPlanets,

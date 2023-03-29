@@ -36,6 +36,15 @@ function Filters() {
     setButtonClick(false);
   }
 
+  function handleClickDelete(e) {
+    setArrayFiltersNumbers(arrayFiltersNumbers
+      .filter((obj) => obj.column !== e.target.value));
+
+    const newOptions = arrayOptionsFiltered.filter((option) => option !== e.target.value);
+
+    setArrayOptionsFiltered(newOptions);
+  }
+
   return (
     <div>
       <input
@@ -91,8 +100,16 @@ function Filters() {
 
       {arrayFiltersNumbers.length > 0 && arrayFiltersNumbers
         .map((filter) => (
-          <li key={ filter.number }>
+          <li key={ filter.column }>
             {`${filter.column} ${filter.operator} ${filter.number}`}
+            <button
+              type="button"
+              value={ filter.column }
+              onClick={ handleClickDelete }
+            >
+              X
+
+            </button>
           </li>))}
     </div>
   );
