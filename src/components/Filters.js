@@ -2,12 +2,24 @@ import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
 
 function Filters() {
-  const { changeSearch, setChangeSearch, setValueColumn, setValueOperator,
-    valueNumber, setValueNumber, setButtonClick, buttonClick,
-    arrayFiltersNumbers, setArrayFiltersNumbers,
-    valueColumn, valueOperator, setStatusFiltered,
-    optionsColumn, arrayOptionsFiltered,
-    setArrayOptionsFiltered } = useContext(AppContext);
+  const {
+    changeSearch,
+    valueNumber,
+    buttonClick,
+    arrayFiltersNumbers,
+    valueColumn,
+    valueOperator,
+    optionsColumn,
+    arrayOptionsFiltered,
+    setChangeSearch,
+    setValueNumber,
+    setButtonClick,
+    setArrayFiltersNumbers,
+    setValueColumn,
+    setValueOperator,
+    setArrayOptionsFiltered,
+    setStatusFiltered,
+  } = useContext(AppContext);
 
   function handleClick() {
     setButtonClick(!buttonClick);
