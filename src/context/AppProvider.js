@@ -12,6 +12,11 @@ export default function AppProvider({ children }) {
   const [buttonClick, setButtonClick] = useState(false);
   const [statusFiltered, setStatusFiltered] = useState(false);
   const [arrayFiltersNumbers, setArrayFiltersNumbers] = useState([]);
+  const [arrayOptionsFiltered, setArrayOptionsFiltered] = useState([]);
+  const [optionsColumn, setOptionsColumn] = useState(['population', 'orbital_period',
+    'diameter', 'rotation_period', 'surface_water']);
+
+  console.log(arrayFiltersNumbers);
 
   // para o fetch inicial
   useEffect(() => {
@@ -73,6 +78,8 @@ export default function AppProvider({ children }) {
     valueNumber,
     buttonClick,
     arrayFiltersNumbers,
+    optionsColumn,
+    arrayOptionsFiltered,
     setChangeSearch,
     setValueOperator,
     setValueColumn,
@@ -80,6 +87,8 @@ export default function AppProvider({ children }) {
     setButtonClick,
     setArrayFiltersNumbers,
     setStatusFiltered,
+    setOptionsColumn,
+    setArrayOptionsFiltered,
   };
 
   return (

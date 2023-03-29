@@ -5,7 +5,9 @@ function Filters() {
   const { changeSearch, setChangeSearch, setValueColumn, setValueOperator,
     valueNumber, setValueNumber, setButtonClick, buttonClick,
     arrayFiltersNumbers, setArrayFiltersNumbers,
-    valueColumn, valueOperator, setStatusFiltered } = useContext(AppContext);
+    valueColumn, valueOperator, setStatusFiltered,
+    optionsColumn, arrayOptionsFiltered,
+    setArrayOptionsFiltered } = useContext(AppContext);
 
   function handleClick() {
     setButtonClick(!buttonClick);
@@ -16,6 +18,8 @@ function Filters() {
       operator: valueOperator,
       number: valueNumber,
     }]);
+
+    setArrayOptionsFiltered((prevList) => [...prevList, valueColumn]);
 
     setButtonClick(false);
   }
@@ -35,11 +39,18 @@ function Filters() {
         data-testid="column-filter"
         onChange={ (e) => setValueColumn(e.target.value) }
       >
-        <option value="population">population</option>
-        <option value="orbital_period">orbital_period</option>
-        <option value="diameter">diameter</option>
-        <option value="rotation_period">rotation_period</option>
-        <option value="surface_water">surface_water</option>
+        { arrayOptionsFiltered.length > 0 ? optionsColumn
+          .map((opt) => (!arrayOptionsFiltered.includes(opt) && (
+            <option key={ opt } value={ opt }>
+              {opt}
+            </option>)))
+          : optionsColumn.map((option) => (
+            <option
+              key={ option }
+              value={ option }
+            >
+              {option}
+            </option>))}
       </select>
 
       <select
