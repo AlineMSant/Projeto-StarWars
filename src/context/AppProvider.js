@@ -36,7 +36,6 @@ export default function AppProvider({ children }) {
     const newArrayFiltered = filtered.filter((obj) => {
       const changeTableByName = obj.name.toLowerCase()
         .includes(changeSearch.toLowerCase());
-      console.log(changeTableByName);
 
       let changeTableByColumn = true;
 
@@ -49,7 +48,6 @@ export default function AppProvider({ children }) {
           } else if (operator === 'igual a') {
             changeTableByColumn = obj[column] === number;
           }
-          console.log(changeTableByColumn);
           return changeTableByColumn;
         });
       }
