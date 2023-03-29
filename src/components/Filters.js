@@ -11,8 +11,11 @@ function Filters() {
     setButtonClick(!buttonClick);
     setStatusFiltered(true);
 
-    setArrayFiltersNumbers((prevList) => [...prevList,
-      `${valueColumn} ${valueOperator} ${valueNumber}`]);
+    setArrayFiltersNumbers((prevList) => [...prevList, {
+      column: valueColumn,
+      operator: valueOperator,
+      number: valueNumber,
+    }]);
 
     setButtonClick(false);
   }
@@ -65,7 +68,9 @@ function Filters() {
 
       {arrayFiltersNumbers.length > 0 && arrayFiltersNumbers
         .map((filter) => (
-          <li key={ filter }>{filter}</li>))}
+          <li key={ filter.number }>
+            {`${filter.column} ${filter.operator} ${filter.number}`}
+          </li>))}
     </div>
   );
 }

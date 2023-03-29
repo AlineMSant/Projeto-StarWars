@@ -33,30 +33,42 @@ export default function AppProvider({ children }) {
 
   // para filtragem por digitação do input e por coluna
   useEffect(() => {
-    const newArrayFiltered = fetchPlanets.filter((obj) => {
+    const newArrayFiltered = filtered.filter((obj) => {
       const changeTableByName = obj.name.toLowerCase()
         .includes(changeSearch.toLowerCase());
+      console.log(changeTableByName);
 
       let changeTableByColumn = true;
 
       if (statusFiltered) {
-        if (valueOperator === 'maior que') {
-          changeTableByColumn = parseFloat(obj[valueColumn]) > parseFloat(valueNumber);
-        } else if (valueOperator === 'menor que') {
-          changeTableByColumn = parseFloat(obj[valueColumn]) < parseFloat(valueNumber);
-        } else if (valueOperator === 'igual a') {
-          changeTableByColumn = obj[valueColumn] === valueNumber;
-        }
+        arrayFiltersNumbers.map(({ column, operator, number }) => {
+          if (operator === 'maior que') {
+            changeTableByColumn = parseFloat(obj[column]) > parseFloat(number);
+          } else if (operator === 'menor que') {
+            changeTableByColumn = parseFloat(obj[column]) < parseFloat(number);
+          } else if (operator === 'igual a') {
+            changeTableByColumn = obj[column] === number;
+          }
+          console.log(changeTableByColumn);
+          return changeTableByColumn;
+        });
       }
 
       return changeTableByName && changeTableByColumn;
     });
 
-    setfiltered(newArrayFiltered);
+    if (arrayFiltersNumbers.length === 0) {
+      setfiltered(fetchPlanets.filter((obj) => obj.name.toLowerCase()
+        .includes(changeSearch.toLowerCase())));
+    } else {
+      setfiltered(newArrayFiltered);
+    }
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [changeSearch, statusFiltered]);
+  }, [changeSearch, statusFiltered, arrayFiltersNumbers]);
 
   const values = {
+    fetchPlanets,
     filtered,
     changeSearch,
     valueColumn,
