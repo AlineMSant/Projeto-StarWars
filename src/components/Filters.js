@@ -2,52 +2,23 @@ import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
 
 function Filters() {
-  const {
-    changeSearch,
-    setChangeSearch,
-    setValueOperator,
-    setValueColumn,
-    setValueNumber,
-    valueNumber,
-    setButtonClick,
-    buttonClick,
-  } = useContext(AppContext);
-
-  function handleChangeSearch(e) {
-    setChangeSearch(e.target.value);
-  }
-
-  function handleChangeOperator(e) {
-    setValueOperator(e.target.value);
-  }
-
-  function handleChangeColumn(e) {
-    setValueColumn(e.target.value);
-  }
-
-  function handleChangeNumber(e) {
-    setValueNumber(e.target.value);
-  }
-
-  function handleClick() {
-    setButtonClick(!buttonClick);
-  }
+  const { changeSearch, setChangeSearch, setValueColumn, setValueOperator,
+    valueNumber, setValueNumber, setButtonClick, buttonClick } = useContext(AppContext);
 
   return (
     <div>
-
       <input
         data-testid="name-filter"
         type="text"
         name="search"
         value={ changeSearch }
-        onChange={ handleChangeSearch }
+        onChange={ (e) => setChangeSearch(e.target.value) }
 
       />
 
       <select
         data-testid="column-filter"
-        onChange={ handleChangeColumn }
+        onChange={ (e) => setValueColumn(e.target.value) }
       >
         <option value="population">population</option>
         <option value="orbital_period">orbital_period</option>
@@ -58,7 +29,7 @@ function Filters() {
 
       <select
         data-testid="comparison-filter"
-        onChange={ handleChangeOperator }
+        onChange={ (e) => setValueOperator(e.target.value) }
       >
         <option value="maior que">maior que</option>
         <option value="menor que">menor que</option>
@@ -69,13 +40,13 @@ function Filters() {
         type="number"
         data-testid="value-filter"
         value={ valueNumber }
-        onChange={ handleChangeNumber }
+        onChange={ (e) => setValueNumber(e.target.value) }
       />
 
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ handleClick }
+        onClick={ () => setButtonClick(!buttonClick) }
       >
         FILTRAR
       </button>

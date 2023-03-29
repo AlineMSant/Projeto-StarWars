@@ -30,40 +30,39 @@ export default function AppProvider({ children }) {
 
   // para filtragem por digitação do input e por coluna
   useEffect(() => {
-    const newArray = fetchPlanets.filter((obj) => {
-      const byName = obj.name.toLowerCase()
+    const newArrayFiltered = fetchPlanets.filter((obj) => {
+      const changeTableByName = obj.name.toLowerCase()
         .includes(changeSearch.toLowerCase());
-      let byColumn = true;
+
+      let changeTableByColumn = true;
+
       if (buttonClick) {
         if (valueOperator === 'maior que') {
-          byColumn = parseFloat(obj[valueColumn]) > parseFloat(valueNumber);
+          changeTableByColumn = parseFloat(obj[valueColumn]) > parseFloat(valueNumber);
         } else if (valueOperator === 'menor que') {
-          byColumn = parseFloat(obj[valueColumn]) < parseFloat(valueNumber);
+          changeTableByColumn = parseFloat(obj[valueColumn]) < parseFloat(valueNumber);
         } else if (valueOperator === 'igual a') {
-          byColumn = obj[valueColumn] === valueNumber;
+          changeTableByColumn = obj[valueColumn] === valueNumber;
         }
       }
-      return byName && byColumn;
+
+      return changeTableByName && changeTableByColumn;
     });
 
-    setfiltered(newArray);
+    setfiltered(newArrayFiltered);
   }, [changeSearch, buttonClick]);
-
-  // useEffect(() => {
-  // }, [buttonClick]);
 
   const values = {
     fetchPlanets,
-    setFetchPlanets,
     changeSearch,
-    setChangeSearch,
+    valueNumber,
+    buttonClick,
     filtered,
+    setChangeSearch,
     setValueOperator,
     setValueColumn,
     setValueNumber,
-    valueNumber,
     setButtonClick,
-    buttonClick,
   };
 
   return (
