@@ -50,6 +50,7 @@ export default function AppProvider({ children }) {
     });
 
     setfiltered(newArrayFiltered);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changeSearch, buttonClick]);
 
   const values = {
