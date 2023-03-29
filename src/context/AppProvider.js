@@ -16,8 +16,6 @@ export default function AppProvider({ children }) {
   const [optionsColumn, setOptionsColumn] = useState(['population', 'orbital_period',
     'diameter', 'rotation_period', 'surface_water']);
 
-  console.log(arrayFiltersNumbers);
-
   // para o fetch inicial
   useEffect(() => {
     const requestApi = async () => {
@@ -68,6 +66,17 @@ export default function AppProvider({ children }) {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changeSearch, statusFiltered, arrayFiltersNumbers]);
+
+  // define o valor do primeira option de column;
+  useEffect(() => {
+    if (arrayOptionsFiltered.length > 0) {
+      const newArrayOptions = optionsColumn
+        .filter((opt) => (!arrayOptionsFiltered.includes(opt) && opt));
+      setValueColumn(newArrayOptions[0]);
+      console.log(newArrayOptions);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [arrayOptionsFiltered]);
 
   const values = {
     fetchPlanets,
