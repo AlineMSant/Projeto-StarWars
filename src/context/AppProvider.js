@@ -10,6 +10,7 @@ export default function AppProvider({ children }) {
   const [valueOperator, setValueOperator] = useState('maior que');
   const [valueNumber, setValueNumber] = useState('0');
   const [buttonClick, setButtonClick] = useState(false);
+  const [arrayFiltersNumbers, setArrayFiltersNumbers] = useState([]);
 
   // para o fetch inicial
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function AppProvider({ children }) {
       });
 
       setFetchPlanets(arrayWithoutResidents);
+      setfiltered(arrayWithoutResidents);
     };
 
     requestApi();
@@ -54,16 +56,19 @@ export default function AppProvider({ children }) {
   }, [changeSearch, buttonClick]);
 
   const values = {
-    fetchPlanets,
+    filtered,
     changeSearch,
+    valueColumn,
+    valueOperator,
     valueNumber,
     buttonClick,
-    filtered,
+    arrayFiltersNumbers,
     setChangeSearch,
     setValueOperator,
     setValueColumn,
     setValueNumber,
     setButtonClick,
+    setArrayFiltersNumbers,
   };
 
   return (

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
 
 function Table() {
-  const { fetchPlanets, filtered } = useContext(AppContext);
+  const { filtered } = useContext(AppContext);
 
   return (
     <table>
@@ -24,7 +24,7 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        { filtered.length > 0 ? filtered.map((obj) => (
+        { filtered.map((obj) => (
           <tr key={ obj.name }>
             <td>{ obj.name }</td>
             <td>{ obj.rotation_period }</td>
@@ -40,23 +40,7 @@ function Table() {
             <td>{ obj.edited }</td>
             <td>{ obj.url }</td>
           </tr>
-        )) : fetchPlanets.map((obj) => (
-          <tr key={ obj.name }>
-            <td>{ obj.name }</td>
-            <td>{ obj.rotation_period }</td>
-            <td>{ obj.orbital_period }</td>
-            <td>{ obj.diameter }</td>
-            <td>{ obj.climate }</td>
-            <td>{ obj.gravity }</td>
-            <td>{ obj.terrain }</td>
-            <td>{ obj.surface_water }</td>
-            <td>{ obj.population }</td>
-            <td>{ obj.films }</td>
-            <td>{ obj.created }</td>
-            <td>{ obj.edited }</td>
-            <td>{ obj.url }</td>
-          </tr>
-        )) }
+        ))}
       </tbody>
     </table>
   );

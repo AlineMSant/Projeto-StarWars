@@ -3,7 +3,16 @@ import AppContext from '../context/AppContext';
 
 function Filters() {
   const { changeSearch, setChangeSearch, setValueColumn, setValueOperator,
-    valueNumber, setValueNumber, setButtonClick, buttonClick } = useContext(AppContext);
+    valueNumber, setValueNumber, setButtonClick, buttonClick,
+    arrayFiltersNumbers } = useContext(AppContext);
+
+  // function handleClick() {
+  //   setArrayFiltersNumbers(...arrayFiltersNumbers, {
+  //     column: valueColumn,
+  //     operator: valueOperator,
+  //     number: valueNumber,
+  //   });
+  // }
 
   return (
     <div>
@@ -51,6 +60,11 @@ function Filters() {
         FILTRAR
       </button>
 
+      {arrayFiltersNumbers.length > 0 && arrayFiltersNumbers
+        .map((filter) => (
+          <li key={ filter.column }>
+            {`${filter.column} ${filter.operator} ${filter.number}`}
+          </li>))}
     </div>
   );
 }
