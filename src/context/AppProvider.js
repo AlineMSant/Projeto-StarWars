@@ -63,8 +63,6 @@ export default function AppProvider({ children }) {
     } else {
       setfiltered(newArrayFiltered);
     }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changeSearch, statusFiltered, arrayFiltersNumbers]);
 
   const values = {
