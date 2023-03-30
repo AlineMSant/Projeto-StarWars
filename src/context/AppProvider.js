@@ -97,6 +97,7 @@ export default function AppProvider({ children }) {
     setStatusFiltered,
     setOptionsColumn,
     setArrayOptionsFiltered,
+    setfiltered,
   };
 
   return (

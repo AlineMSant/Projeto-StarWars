@@ -3,6 +3,7 @@ import AppContext from '../context/AppContext';
 
 function Filters() {
   const {
+    fetchPlanets,
     changeSearch,
     valueNumber,
     buttonClick,
@@ -19,6 +20,7 @@ function Filters() {
     setValueOperator,
     setArrayOptionsFiltered,
     setStatusFiltered,
+    setfiltered,
   } = useContext(AppContext);
 
   function handleClick() {
@@ -37,6 +39,7 @@ function Filters() {
   }
 
   function handleClickDeleteOne(e) {
+    setfiltered(fetchPlanets);
     setArrayFiltersNumbers(arrayFiltersNumbers
       .filter((obj) => obj.column !== e.target.value));
 
