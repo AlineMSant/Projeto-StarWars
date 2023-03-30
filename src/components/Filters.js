@@ -6,7 +6,6 @@ function Filters() {
     fetchPlanets,
     changeSearch,
     valueNumber,
-    // buttonClick,
     arrayFiltersNumbers,
     valueColumn,
     valueOperator,
@@ -14,7 +13,6 @@ function Filters() {
     arrayOptionsFiltered,
     setChangeSearch,
     setValueNumber,
-    // setButtonClick,
     setArrayFiltersNumbers,
     setValueColumn,
     setValueOperator,
@@ -24,7 +22,6 @@ function Filters() {
   } = useContext(AppContext);
 
   function handleClick() {
-    // setButtonClick(!buttonClick);
     setStatusFiltered(true);
 
     setArrayFiltersNumbers((prevList) => [...prevList, {
@@ -34,8 +31,6 @@ function Filters() {
     }]);
 
     setArrayOptionsFiltered((prevList) => [...prevList, valueColumn]);
-
-    // setButtonClick(false);
   }
 
   function handleClickDeleteOne(e) {

@@ -9,7 +9,6 @@ export default function AppProvider({ children }) {
   const [valueColumn, setValueColumn] = useState('population');
   const [valueOperator, setValueOperator] = useState('maior que');
   const [valueNumber, setValueNumber] = useState('0');
-  // const [buttonClick, setButtonClick] = useState(false);
   const [statusFiltered, setStatusFiltered] = useState(false);
   const [arrayFiltersNumbers, setArrayFiltersNumbers] = useState([]);
   const [arrayOptionsFiltered, setArrayOptionsFiltered] = useState([]);
@@ -84,7 +83,6 @@ export default function AppProvider({ children }) {
     valueColumn,
     valueOperator,
     valueNumber,
-    // buttonClick,
     arrayFiltersNumbers,
     optionsColumn,
     arrayOptionsFiltered,
@@ -92,7 +90,6 @@ export default function AppProvider({ children }) {
     setValueOperator,
     setValueColumn,
     setValueNumber,
-    // setButtonClick,
     setArrayFiltersNumbers,
     setStatusFiltered,
     setOptionsColumn,
