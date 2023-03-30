@@ -86,7 +86,7 @@ test('Verifica se ao abrir a aplicação a tabela é renderizada sem filtros', a
   expect(nameKamino).toBeVisible();
 });
 
-test('Verifica se ao pesquisar digitando um nome a tabela é renderizada corretamente', async () => {
+test('Verifica se ao filtrar por digitação a tabela é renderizada corretamente', async () => {
   
   jest.spyOn(global, 'fetch');
 
@@ -116,4 +116,42 @@ test('Verifica se ao pesquisar digitando um nome a tabela é renderizada correta
   expect(nameHoth).toBeVisible();
   expect(nameCoruscant).toBeVisible();  
 });
+
+test('Verifica se adiciona filtros ao clicar no botão FILTRAR', async () => {
+  
+  jest.spyOn(global, 'fetch');
+
+    global.fetch.mockResolvedValue({
+      json: jest.fn().mockResolvedValue(mockData),
+    });
+
+  render(<App />);
+
+  const inputNumber = screen.getByTestId('value-filter');
+  const buttonFilter = screen.getByTestId('button-filter');
+  expect(inputNumber).toBeVisible();
+  expect(buttonFilter).toBeVisible();
+
+  const nameTatooine = await screen.findByText('Tatooine');
+  const nameNaboo = await screen.findByText('Naboo');
+  const nameCoruscant = await screen.findByText('Coruscant');
+
+  expect(nameTatooine).toBeVisible();
+  expect(nameNaboo).toBeVisible();
+  expect(nameCoruscant).toBeVisible();
+
+  userEvent.type(inputNumber, '4400000000');
+  userEvent.click(buttonFilter);
+
+  // const liFilter = screen.findByTestId('filter');
+  // expect(liFilter).toBeVisible();
+
+  expect(nameTatooine).not.toBeVisible();
+  expect(nameNaboo).toBeVisible();
+  expect(nameCoruscant).toBeVisible();  
+});
+
+
+
+
 
