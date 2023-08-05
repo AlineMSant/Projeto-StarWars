@@ -1,48 +1,51 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
+import '../App.css';
 
 function Table() {
   const { filtered } = useContext(AppContext);
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Rotation Period</th>
-          <th>Orbital Period</th>
-          <th>Diameter</th>
-          <th>Climate</th>
-          <th>Gravity</th>
-          <th>Terrain</th>
-          <th>Surface Water</th>
-          <th>Population</th>
-          <th>Films</th>
-          <th>Created</th>
-          <th>Edited</th>
-          <th>URL</th>
-        </tr>
-      </thead>
-      <tbody>
-        { filtered.map((obj) => (
-          <tr key={ obj.name }>
-            <td>{ obj.name }</td>
-            <td>{ obj.rotation_period }</td>
-            <td>{ obj.orbital_period }</td>
-            <td>{ obj.diameter }</td>
-            <td>{ obj.climate }</td>
-            <td>{ obj.gravity }</td>
-            <td>{ obj.terrain }</td>
-            <td>{ obj.surface_water }</td>
-            <td>{ obj.population }</td>
-            <td>{ obj.films }</td>
-            <td>{ obj.created }</td>
-            <td>{ obj.edited }</td>
-            <td>{ obj.url }</td>
+    <div className="table">
+      <table>
+        <thead>
+          <tr className="tr">
+            <th className="medium-column">Name</th>
+            <th className="small-column">Rotation Period</th>
+            <th className="small-column">Orbital Period</th>
+            <th className="small-column">Diameter</th>
+            <th className="medium-column">Climate</th>
+            <th className="medium-column">Gravity</th>
+            <th className="medium-column">Terrain</th>
+            <th className="small-column">Surface Water</th>
+            <th className="medium-column">Population</th>
+            <th className="bigger-column">Films</th>
+            <th className="big-column">Created</th>
+            <th className="big-column">Edited</th>
+            <th className="big-column">URL</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          { filtered.map((obj) => (
+            <tr key={ obj.name }>
+              <td className="medium-column">{ obj.name }</td>
+              <td className="small-column">{ obj.rotation_period }</td>
+              <td className="small-column">{ obj.orbital_period }</td>
+              <td className="small-column">{ obj.diameter }</td>
+              <td className="medium-column">{ obj.climate }</td>
+              <td className="medium-column">{ obj.gravity }</td>
+              <td className="medium-column">{ obj.terrain }</td>
+              <td className="small-column">{ obj.surface_water }</td>
+              <td className="medium-column">{ obj.population }</td>
+              <td className="bigger-column">{ obj.films }</td>
+              <td className="big-column">{ obj.created }</td>
+              <td className="big-column">{ obj.edited }</td>
+              <td className="big-column">{ obj.url }</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

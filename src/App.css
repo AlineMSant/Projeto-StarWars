@@ -1,41 +1,141 @@
-.App {
-  text-align: center;
+* {
+  background-color: black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  width: 100%;
 }
 
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+.app-container {
   align-items: center;
-  background-color: #282c34;
-  color: white;
   display: flex;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
+  height: 200vh;
   justify-content: center;
-  min-height: 100vh;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.title-container {
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
+.starwars {
+  height: 220px;
+  margin-top: 200px;
+}
 
-  from {
-    transform: rotate(0deg);
-  }
+.App {
+  border: 1px solid white;
+  height: 90vh;
+  width: 90%;
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+.table {
+  color: white;
+  height: 70vh;
+  margin: 10px;
+  overflow-y: scroll;
+}
+
+.filters-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-filters-numbers {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+}
+
+input, select, button {
+  color: white;
+  margin-bottom: 20px;
+  margin-top: 60px;
+}
+
+select {
+  border-left: black;
+  border-right: black;
+  border-top: black;
+  height: 30px;
+}
+
+.input-name {
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  font-size: medium;
+  height: 30px;
+  margin-top: 20px;
+  position: absolute;
+  width: 600px;
+}
+
+.img-lupa {
+  height: 23px;
+  left: 285px;
+  position: relative;
+  top: 25px;
+}
+
+.input-number {
+  border: 1px solid white;
+  border-radius: 5px;
+  height: 22px;
+  padding: 5px;
+  width: 60px;
+}
+
+button {
+  border: 1px solid yellow;
+  border-radius: 5px;
+  color: yellow;
+  font-weight: 600;
+  height: 70px;
+  text-align: center;
+  width: 80px;
+}
+
+button:hover {
+  box-shadow: 0 0 0 2px rgb(192, 192, 110);
+}
+
+li {
+  color: white;
+}
+
+.small-column {
+  min-width: 70px;
+  padding: 5px;
+  text-align: left;
+}
+
+.medium-column {
+  min-width: 120px;
+  padding: 5px;
+  text-align: left;
+}
+
+.bigger-column {
+  max-width: 260px;
+  padding: 10px;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.big-column {
+  max-width: 200px;
+  padding: 10px;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+thead tr th {
+  background-color: rgb(42, 39, 39);
 }

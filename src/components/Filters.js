@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
+import '../App.css';
+import lupa from '../images/lupa.png';
 
 function Filters() {
   const {
@@ -50,8 +52,9 @@ function Filters() {
   }
 
   return (
-    <div>
+    <div className="filters-container">
       <input
+        className="input-name"
         data-testid="name-filter"
         type="text"
         name="search"
@@ -59,56 +62,60 @@ function Filters() {
         onChange={ (e) => setChangeSearch(e.target.value) }
 
       />
+      <img className="img-lupa" src={ lupa } alt="lupa" />
 
-      <select
-        data-testid="column-filter"
-        onChange={ (e) => setValueColumn(e.target.value) }
-      >
-        { arrayOptionsFiltered.length > 0 ? optionsColumn
-          .map((opt) => (!arrayOptionsFiltered.includes(opt) && (
-            <option key={ opt } value={ opt }>
-              {opt}
-            </option>)))
-          : optionsColumn.map((option) => (
-            <option
-              key={ option }
-              value={ option }
-            >
-              {option}
-            </option>))}
-      </select>
+      <div className="container-filters-numbers">
+        <select
+          data-testid="column-filter"
+          onChange={ (e) => setValueColumn(e.target.value) }
+        >
+          { arrayOptionsFiltered.length > 0 ? optionsColumn
+            .map((opt) => (!arrayOptionsFiltered.includes(opt) && (
+              <option key={ opt } value={ opt }>
+                {opt}
+              </option>)))
+            : optionsColumn.map((option) => (
+              <option
+                key={ option }
+                value={ option }
+              >
+                {option}
+              </option>))}
+        </select>
 
-      <select
-        data-testid="comparison-filter"
-        onChange={ (e) => setValueOperator(e.target.value) }
-      >
-        <option value="maior que">maior que</option>
-        <option value="menor que">menor que</option>
-        <option value="igual a">igual a</option>
-      </select>
+        <select
+          data-testid="comparison-filter"
+          onChange={ (e) => setValueOperator(e.target.value) }
+        >
+          <option value="maior que">maior que</option>
+          <option value="menor que">menor que</option>
+          <option value="igual a">igual a</option>
+        </select>
 
-      <input
-        type="number"
-        data-testid="value-filter"
-        value={ valueNumber }
-        onChange={ (e) => setValueNumber(e.target.value) }
-      />
+        <input
+          className="input-number"
+          type="number"
+          data-testid="value-filter"
+          value={ valueNumber }
+          onChange={ (e) => setValueNumber(e.target.value) }
+        />
 
-      <button
-        type="button"
-        data-testid="button-filter"
-        onClick={ handleClick }
-      >
-        FILTRAR
-      </button>
+        <button
+          type="button"
+          data-testid="button-filter"
+          onClick={ handleClick }
+        >
+          FILTRAR
+        </button>
 
-      <button
-        type="button"
-        data-testid="button-remove-filters"
-        onClick={ handleClickDeleteAll }
-      >
-        Remover todas filtragens
-      </button>
+        <button
+          type="button"
+          data-testid="button-remove-filters"
+          onClick={ handleClickDeleteAll }
+        >
+          REMOVER FILTROS
+        </button>
+      </div>
 
       {arrayFiltersNumbers.length > 0 && arrayFiltersNumbers
         .map((filter) => (
